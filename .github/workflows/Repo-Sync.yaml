@@ -136,4 +136,49 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/zxlhhyccc/bf-package-master master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/bf-package-master	    
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/bf-package-master
+      - name: v2ray-plugin
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/teddysun/v2ray-plugin master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/v2ray-plugin
+      - name: xray-plugin
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/teddysun/xray-plugin master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/xray-plugin
+      - name: ssh-action
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/appleboy/ssh-action master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/ssh-action
+      - name: Xray_onekey
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/wulabing/Xray_onekey main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/Xray_onekey
+      - name: debugger-action
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/actions/javascript-action main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/debugger-action
+      - name: openwrt-bypass
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/kiddin9/openwrt-bypass main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt-bypass
+      - name: openmptcprouter-feeds
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/teddysun/v2ray-plugin develop \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openmptcprouter-feeds
+      - name: etcher
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/balena-io/etcher master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/etcher
+      - name: asu
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/openwrt/asu master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/asu    
