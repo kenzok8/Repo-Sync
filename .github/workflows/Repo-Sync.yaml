@@ -24,7 +24,7 @@ jobs:
         run: |
           dir=$(pwd)
           bash Scripts/Sync.sh \
-            https://github.com/immortalwrt/immortalwrt master \
+            https://github.com/immortalwrt/immortalwrt openwrt-21.02 \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt keep
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
       - name: Set up Docker Buildx
@@ -93,7 +93,7 @@ jobs:
           tags: |
             ghcr.io/kenzok78/jd-panel:latest
 
-  immortalwrt:
+  packages:
     runs-on: ubuntu-latest
     steps:
       - name: Sleep Random Time
@@ -106,7 +106,7 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/immortalwrt/luci master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/luci
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt/luci ts2js
       - name: packages
         run: |
           bash Scripts/Sync.sh \
@@ -116,7 +116,12 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/fw876/helloworld master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/helloworld			
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/helloworld
+      - name: openwrt-passwall
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/xiaorouji/openwrt-passwall packages \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt-passwall
       - name: starter-workflows
         run: |
           bash Scripts/Sync.sh \
