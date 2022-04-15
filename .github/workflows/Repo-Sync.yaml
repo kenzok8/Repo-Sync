@@ -35,7 +35,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: kenzok8
+          username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push
         if: steps.microsoft-365-admin-update.outputs.status != 'updated'
@@ -46,7 +46,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok8/microsoft-365-admin:latest
+            ghcr.io/kenzok78/microsoft-365-admin:latest
 
   gh-card:
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: kenzok8
+          username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push for frontend
         if: steps.gh-card-update.outputs.status != 'updated'
@@ -81,7 +81,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok8/gh-card:frontend
+            ghcr.io/kenzok78/gh-card:frontend
       - name: Build and push for backend
         if: steps.gh-card-update.outputs.status != 'updated'
         uses: docker/build-push-action@v2
@@ -91,7 +91,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok8/gh-card:backend
+            ghcr.io/kenzok78/gh-card:backend
 
   jd-panel:
     runs-on: ubuntu-latest
@@ -115,7 +115,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: kenzok8
+          username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push
         if: steps.jd-panel-update.outputs.status != 'updated'
@@ -126,7 +126,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok8/jd-panel:latest
+            ghcr.io/kenzok78/jd-panel:latest
 
   jd-cookie:
     runs-on: ubuntu-latest
@@ -150,7 +150,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: kenzok8
+          username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push
         if: steps.jd-cookie-update.outputs.status != 'updated'
@@ -161,7 +161,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok8/jd-cookie:latest
+            ghcr.io/kenzok78/jd-cookie:latest
 
   jd-scripts:
     runs-on: ubuntu-latest
