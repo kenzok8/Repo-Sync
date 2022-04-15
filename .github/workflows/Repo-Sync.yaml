@@ -24,7 +24,7 @@ jobs:
         run: |
           dir=$(pwd)
           bash Scripts/Sync.sh \
-            https://github.com/immortalwrt/immortalwrt openwrt-21.02 \
+            https://github.com/immortalwrt/immortalwrt master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt keep
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
       - name: Set up Docker Buildx
@@ -112,11 +112,6 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/immortalwrt/packages master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/packages
-      - name: openwrt-21.02
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/immortalwrt/immortalwrt master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt
       - name: helloworld
         run: |
           bash Scripts/Sync.sh \
