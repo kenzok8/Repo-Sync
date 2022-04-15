@@ -13,32 +13,32 @@ on:
     - cron: 3-53/10 * * * *
 
 jobs:
-  openmptcprouter-feeds:
+  immortalwrt:
     runs-on: ubuntu-latest
     steps:
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
       - uses: actions/checkout@v2
       - name: Github ➡ Github
-        id: openmptcprouter-feeds-update
+        id: immortalwrt-update
         run: |
           dir=$(pwd)
           bash Scripts/Sync.sh \
-            https://github.com/Ysurac/openmptcprouter-feeds develop \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openmptcprouter-feeds keep
+            https://github.com/immortalwrt/immortalwrt openwrt-21.02 \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt keep
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
       - name: Set up Docker Buildx
-        if: steps.openmptcprouter-feeds-update.outputs.status != 'updated'
+        if: steps.immortalwrt-update.outputs.status != 'updated'
         uses: docker/setup-buildx-action@v1
       - name: Github Docker Login
-        if: steps.openmptcprouter-feeds-update.outputs.status != 'updated'
+        if: steps.immortalwrt-update.outputs.status != 'updated'
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push for frontend
-        if: steps.openmptcprouter-feeds-update.outputs.status != 'updated'
+        if: steps.immortalwrt-update.outputs.status != 'updated'
         uses: docker/build-push-action@v2
         with:
           context: ./dest_repo/frontend
@@ -46,9 +46,9 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok78/openmptcprouter-feeds:frontend
+            ghcr.io/kenzok78/immortalwrt:frontend
       - name: Build and push for backend
-        if: steps.openmptcprouter-feeds-update.outputs.status != 'updated'
+        if: steps.immortalwrt-update.outputs.status != 'updated'
         uses: docker/build-push-action@v2
         with:
           context: ./dest_repo/backend
@@ -56,7 +56,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/kenzok78/openmptcprouter-feeds:backend
+            ghcr.io/kenzok78/immortalwrt:backend
 
   jd-panel:
     runs-on: ubuntu-latest
@@ -93,7 +93,7 @@ jobs:
           tags: |
             ghcr.io/kenzok78/jd-panel:latest
 
-  jd-scripts:
+  immortalwrt:
     runs-on: ubuntu-latest
     steps:
       - name: Sleep Random Time
@@ -102,9 +102,33 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
-      - name: JDHelloWorld
+      - name: luci
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/JDHelloWorld/jd_scripts main \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/jd-scripts ts2js
-
+            https://github.com/immortalwrt/luci master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/luci
+      - name: packages
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/immortalwrt/packages master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/packages
+      - name: openwrt-21.02
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/immortalwrt/immortalwrt master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt
+      - name: helloworld
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/fw876/helloworld master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/helloworld			
+      - name: starter-workflows
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/actions/starter-workflows main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/starter-workflows
+      - name: trojan
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/Jrohy/trojan master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/trojan			
