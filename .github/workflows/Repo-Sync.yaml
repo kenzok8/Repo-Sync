@@ -106,7 +106,7 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/immortalwrt/luci master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt/luci ts2js
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/luci ts2js
       - name: packages
         run: |
           bash Scripts/Sync.sh \
@@ -131,4 +131,9 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/Jrohy/trojan master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/trojan			
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/trojan
+      - name: bf-package
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/zxlhhyccc/bf-package-master master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/bf-package-master	    
