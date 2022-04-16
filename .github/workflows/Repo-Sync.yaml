@@ -170,7 +170,7 @@ jobs:
       - name: openmptcprouter-feeds
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/teddysun/v2ray-plugin master \
+            https://github.com/Ysurac/openmptcprouter-feeds develop \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openmptcprouter-feeds
       - name: etcher
         run: |
