@@ -145,7 +145,7 @@ jobs:
       - name: xray-plugin
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/teddysun/xray-plugin master \
+            https://github.com/teddysun/xray-plugin main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/xray-plugin
       - name: ssh-action
         run: |
