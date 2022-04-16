@@ -10,7 +10,7 @@ on:
       - '.github/workflows/Repo-Sync.yaml'
 
   schedule:
-    - cron: 3-53/60 8,23 * * *
+    - cron: 3-53/60 * * * *
 
 jobs:
   immortalwrt:
