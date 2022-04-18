@@ -181,4 +181,19 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/openwrt/asu master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/asu    
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/asu
+      - name: immortalwrt-mirror
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/immortalwrt/immortalwrt-mirror-update master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt-mirror-update
+      - name: amlogic
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/ophub/luci-app-amlogic main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/luci-app-amlogic
+      - name: openwrt_packit
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/unifreq/openwrt_packit master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit         
