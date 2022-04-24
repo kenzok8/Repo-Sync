@@ -201,10 +201,8 @@ jobs:
       - name: Remove artifacts
         uses: c-hive/gha-remove-artifacts@v1.2.0
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.ACTION_SECRET }}
           repository: kenzok8/openwrt-packages		
-          age: '3 days'
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}        
+          age: '3 days'        
          
          
