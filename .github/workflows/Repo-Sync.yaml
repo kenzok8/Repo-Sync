@@ -198,11 +198,12 @@ jobs:
             https://github.com/unifreq/openwrt_packit master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit
           
-      - name: Remove artifacts
-        uses: c-hive/gha-remove-artifacts@v1.2.0
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2.0.1
         with:
           token: ${{ secrets.ACTION_SECRET }}
-          repository: kenzok8/openwrt-packages		
-          age: '3 days'        
+          repository: kenzok8/openwrt-packages
+          retain_days: 1
+          keep_minimum_runs: 3   
          
          
