@@ -196,4 +196,23 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/unifreq/openwrt_packit master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit         
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit
+            
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2.0.1
+        with:
+          token: ${{ github.token }}
+          repository: kenzok8/openwrt-packages
+          retain_days: 1
+          keep_minimum_runs: 3
+          
+      - name: Remove old Releases
+        uses: dev-drprasad/delete-older-releases@v0.2.0
+        with:
+          repo: kenzok8/openwrt-packages # defaults to current repo
+          keep_latest: 3
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}	          
+         
+         
