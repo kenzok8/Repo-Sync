@@ -13,7 +13,7 @@ on:
     - cron: 3-53/60 * * * *
 
 jobs:
-  job_init:
+  job_immortalwrt:
     runs-on: ubuntu-latest
     steps:
       - name: Delete workflow runs
@@ -204,14 +204,6 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/unifreq/openwrt_packit master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit          
-          
-      - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@main
-        with:
-          token: ${{ secrets.ACTION_SECRET }}
-          repository: ${{ github.repository }}
-          retain_days: 1
-          keep_minimum_runs: 1
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit
          
          
