@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - name: Github ➡ Github
         id: immortalwrt-update
         run: |
@@ -29,17 +29,17 @@ jobs:
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
       - name: Set up Docker Buildx
         if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@master
       - name: Github Docker Login
         if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/login-action@v1
+        uses: docker/login-action@master
         with:
           registry: ghcr.io
           username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push for frontend
         if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@master
         with:
           context: ./dest_repo/frontend
           file: ./dest_repo/frontend/Dockerfile
@@ -49,7 +49,7 @@ jobs:
             ghcr.io/kenzok78/immortalwrt:frontend
       - name: Build and push for backend
         if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@master
         with:
           context: ./dest_repo/backend
           file: ./dest_repo/backend/Dockerfile
@@ -63,7 +63,7 @@ jobs:
     steps:
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - name: Github ➡ Github
         id: jd-panel-update
         run: |
@@ -74,17 +74,17 @@ jobs:
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
       - name: Set up Docker Buildx
         if: steps.jd-panel-update.outputs.status != 'updated'
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@master
       - name: Github Docker Login
         if: steps.jd-panel-update.outputs.status != 'updated'
-        uses: docker/login-action@v1
+        uses: docker/login-action@master
         with:
           registry: ghcr.io
           username: kenzok78
           password: ${{ secrets.ACTION_SECRET }}
       - name: Build and push
         if: steps.jd-panel-update.outputs.status != 'updated'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@master
         with:
           context: ./dest_repo
           file: ./dest_repo/docker/Dockerfile
@@ -98,8 +98,8 @@ jobs:
     steps:
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 'lts/*'
       - name: luci
@@ -199,7 +199,7 @@ jobs:
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit          
           
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2.0.1
+        uses: Mattraks/delete-workflow-runs@main
         with:
           token: ${{ secrets.ACTION_SECRET }}
           repository: ${{ github.repository }}
