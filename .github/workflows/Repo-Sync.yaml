@@ -170,26 +170,6 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/actions/javascript-action main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/debugger-action
-      - name: openwrt-bypass
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/kiddin9/openwrt-bypass main \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt-bypass
-      - name: openmptcprouter-feeds
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/Ysurac/openmptcprouter-feeds develop \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openmptcprouter-feeds
-      - name: etcher
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/balena-io/etcher master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/etcher
-      - name: asu
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/openwrt/asu master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/asu
       - name: immortalwrt-mirror
         run: |
           bash Scripts/Sync.sh \
@@ -200,10 +180,5 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/ophub/luci-app-amlogic main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/luci-app-amlogic
-      - name: openwrt_packit
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/unifreq/openwrt_packit master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/openwrt_packit
          
          
