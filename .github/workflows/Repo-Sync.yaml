@@ -32,7 +32,7 @@ jobs:
         run: |
           dir=$(pwd)
           bash Scripts/Sync.sh \
-            https://github.com/immortalwrt/immortalwrt openwrt-21.02 \
+            https://github.com/immortalwrt/immortalwrt master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt keep
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "status=updated" >> $GITHUB_OUTPUT
       - name: Set up Docker Buildx
@@ -115,11 +115,6 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/immortalwrt/luci master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/luci ts2js
-      - name: packages
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/immortalwrt/packages master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/packages
       - name: helloworld
         run: |
           bash Scripts/Sync.sh \
@@ -140,11 +135,6 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/Jrohy/trojan master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/trojan
-      - name: bf-package
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/zxlhhyccc/bf-package-master master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/bf-package-master
       - name: v2ray-plugin
         run: |
           bash Scripts/Sync.sh \
@@ -170,11 +160,6 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/actions/javascript-action main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/debugger-action
-      - name: immortalwrt-mirror
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/immortalwrt/immortalwrt-mirror-update master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt-mirror-update
       - name: amlogic
         run: |
           bash Scripts/Sync.sh \
