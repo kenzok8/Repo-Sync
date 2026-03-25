@@ -35,36 +35,7 @@ jobs:
             https://github.com/immortalwrt/immortalwrt master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/kenzok78/immortalwrt keep
           [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "status=updated" >> $GITHUB_OUTPUT
-      - name: Set up Docker Buildx
-        if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/setup-buildx-action@master
-      - name: Github Docker Login
-        if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/login-action@master
-        with:
-          registry: ghcr.io
-          username: kenzok78
-          password: ${{ secrets.ACTION_SECRET }}
-      - name: Build and push for frontend
-        if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/build-push-action@master
-        with:
-          context: ./dest_repo/frontend
-          file: ./dest_repo/frontend/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ghcr.io/kenzok78/immortalwrt:frontend
-      - name: Build and push for backend
-        if: steps.immortalwrt-update.outputs.status != 'updated'
-        uses: docker/build-push-action@master
-        with:
-          context: ./dest_repo/backend
-          file: ./dest_repo/backend/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ghcr.io/kenzok78/immortalwrt:backend
+      # Docker build steps removed - immortalwrt repo has no frontend/backend directories
 
   jd-panel:
     runs-on: ubuntu-latest
